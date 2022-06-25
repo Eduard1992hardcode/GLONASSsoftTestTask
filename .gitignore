@@ -3,3 +3,10 @@
 ################################################################################
 
 /.vs/GLONASSsoftTestTask
+/EventBus/bin/Debug
+/GLONASSsoftTestTask/bin/Debug/net6.0
+/GLONASSsoftTestTask/obj
+/Infrastructure/obj
+/EventBusRabbitMQ/obj
+/EventBus/obj
+/EventBusRabbitMQ/bin/Debug/net6.0
