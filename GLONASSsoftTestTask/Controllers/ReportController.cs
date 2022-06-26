@@ -21,22 +21,15 @@ namespace GLONASSsoftTestTask.Controllers
         [HttpPost]
         public async Task<IActionResult> UserStatistics([FromBody] UserStatisticDto dto)
         {
-            try
-            {
-                return Ok(await _taskService.CreateStatisticTask(dto));
-            }
-            catch (Exception e)
-            {
-
-               return BadRequest(e.Message);
-            }
-            
+            var result = await _taskService.CreateStatisticTask(dto);
+            return Ok(result);
         }
         
         [HttpGet("{guid}")]
-        public string Info(Guid guid)
+        public async Task<IActionResult> Info(Guid guid)
         {
-            return "value";
+            var result =  await _taskService.GetInfo(guid);
+            return Ok(result);
         }
 
     }

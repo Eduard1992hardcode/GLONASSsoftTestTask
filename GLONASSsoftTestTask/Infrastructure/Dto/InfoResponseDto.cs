@@ -22,7 +22,7 @@ namespace GLONASSsoftTestTask.Infrastructure.Dto
         {
             CreateMap<StatisticTaskEntity, InfoResponseDto > ()
                 .ForMember(x => x.Query, opt => opt.MapFrom(y => y.Id))
-                .ForMember(x => x.Percent, opt => opt.MapFrom(x => x.Percent))
+                .ForMember(x => x.Percent, opt => opt.MapFrom(x => (int)x.Percent))
                 .ForMember(x => x.Result , opt => opt.Ignore());
         }
     }

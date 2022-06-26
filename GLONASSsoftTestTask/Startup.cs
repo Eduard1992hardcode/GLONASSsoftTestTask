@@ -31,17 +31,18 @@ namespace GLONASSsoftTestTask
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GLONASSsoftTestTask", Version = "v1" });
             });
-            services
-                .AddRabbitMQ(Configuration);
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseNpgsql(Configuration.GetConnectionString("ApplicationDbContext")));
             services.AddTransient<ITaskService, TaskService>();
             services.AddTransient<IEfRepository<UserEntity>, EfRepository<UserEntity>>();
+            services.AddRabbitMQ(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.ConfigureRabbitMQ();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -50,7 +51,7 @@ namespace GLONASSsoftTestTask
             }
 
             app.UseHttpsRedirection();
-
+            
             app.UseRouting();
 
             app.UseAuthorization();
@@ -59,6 +60,7 @@ namespace GLONASSsoftTestTask
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }

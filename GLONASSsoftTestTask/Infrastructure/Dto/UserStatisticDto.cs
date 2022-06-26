@@ -15,11 +15,11 @@ namespace GLONASSsoftTestTask.Infrastructure.Dto
         public UserStatisticProfile()
         {
             CreateMap<UserStatisticDto, StatisticTaskEntity>()
-                .ForMember(x => x.Created, opt => opt.MapFrom(y => DateTime.Now))
                 .ForMember(x => x.DateStart, opt => opt.MapFrom(y => y.DateStart))
                 .ForMember(x => x.Percent, opt => opt.Ignore())
                 .ForMember(x => x.DateEnd, opt => opt.MapFrom(y => y.DateEnd))
-                .ForMember(x => x.UserId, opt => opt.MapFrom(y=> y.UserId));
+                .ForMember(x => x.UserId, opt => opt.MapFrom(y=> y.UserId))
+                .ForMember(x => x.Id, opt => opt.MapFrom(y => Guid.NewGuid()));
 
         }
     }

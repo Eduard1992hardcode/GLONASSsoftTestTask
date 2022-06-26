@@ -50,10 +50,8 @@ namespace GLONASSsoftTestTask.Infrastructure.DependencyInjections
 
         public static IApplicationBuilder ConfigureRabbitMQ(this IApplicationBuilder app)
         {
-            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            app.ApplicationServices.GetRequiredService<IEventBus>().Subscribe<CreateTaskStatisticEvent, CreateTaskStatisticEventHandler>();
 
-            eventBus.Subscribe<CreateTaskStatisticEvent, CreateTaskStatisticEventHandler>();
-            
             return app;
         }
     }

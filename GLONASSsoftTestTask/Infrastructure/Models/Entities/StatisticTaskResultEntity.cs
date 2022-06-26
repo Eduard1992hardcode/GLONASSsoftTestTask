@@ -7,7 +7,6 @@ namespace GLONASSsoftTestTask.Infrastructure.Models.Entities
 {
     public class StatisticTaskResultEntity : IEntity<Guid>
     {
-        public Guid Id { get; set; }
         public Guid TaskId { get; set; }
 
         public int CountSignIn { get; set; }
@@ -17,8 +16,11 @@ namespace GLONASSsoftTestTask.Infrastructure.Models.Entities
     {
         public void Configure(EntityTypeBuilder<StatisticTaskResultEntity> builder)
         {
-            builder.ToTable("StatisticTask", "TestTask");
+            builder.ToTable("StatisticTaskResult", "TestTask");
             builder.HasKey(x => x.Id);
+            builder.HasOne(x => x.Task)
+                .WithOne()
+                .HasForeignKey<StatisticTaskResultEntity>(x => x.TaskId);
         }
     }
 }

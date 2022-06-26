@@ -63,7 +63,9 @@ namespace GLONASSsoftTestTask.Infrastructure.Services
                 .ProjectTo<InfoResponseDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
 
-            var checkResultInfo = await _context.StatisticResults.FirstOrDefaultAsync(x => x.TaskId == taskGuid);
+            var checkResultInfo = await _context.StatisticResults
+                .Include(x=>x.Task)
+                .FirstOrDefaultAsync(x => x.TaskId == taskGuid);
             
             if (checkResultInfo == null)
                 return taskResponse;

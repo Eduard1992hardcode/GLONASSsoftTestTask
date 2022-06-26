@@ -38,7 +38,7 @@ namespace EventBusRabbitMQ
 
         public EventBusRabbitMQ(IRabbitMQPersistentConnection persistentConnection, ILogger<EventBusRabbitMQ> logger,
             IEventBusSubscriptionsManager subsManager, IOptions<EventBusOptions> options,
-            IServiceProvider serviceProvider, int retryCount = 0)
+            IServiceProvider serviceProvider, int retryCount = 5)
         {
             _persistentConnection = persistentConnection ?? throw new ArgumentNullException(nameof(persistentConnection));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
